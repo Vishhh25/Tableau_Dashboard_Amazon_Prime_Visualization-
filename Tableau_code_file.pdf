@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='utf-8'?>
+<workbook xmlns="http://schemas.tableausoftware.com/workbook/">
+  <datasources>
+    <datasource name="Amazon Prime Video Data">
+      <connection class="textscan" dbname="amazon_prime_data.csv"/>
+      <column name="Show ID" type="string"/>
+      <column name="Type" type="string"/>
+      <column name="Title" type="string"/>
+      <column name="Director" type="string"/>
+      <column name="Cast" type="string"/>
+      <column name="Country" type="string"/>
+      <column name="Date Added" type="date"/>
+      <column name="Release Year" type="integer"/>
+      <column name="Ratings" type="string"/>
+      <column name="Duration" type="string"/>
+      <column name="Category" type="string"/>
+      <column name="Description" type="string"/>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name="Content Type Distribution">
+      <view type="bar">
+        <encoding channel="x" field="Type"/>
+        <encoding channel="y" field="Show ID" aggregation="count"/>
+      </view>
+    </worksheet>
+    <worksheet name="Top Genres Analysis">
+      <view type="bar">
+        <encoding channel="x" field="Category"/>
+        <encoding channel="y" field="Show ID" aggregation="count"/>
+      </view>
+    </worksheet>
+    <worksheet name="Shows by Release Year">
+      <view type="line">
+        <encoding channel="x" field="Release Year"/>
+        <encoding channel="y" field="Show ID" aggregation="count"/>
+      </view>
+    </worksheet>
+    <worksheet name="Shows by Country">
+      <view type="map">
+        <encoding channel="geo" field="Country"/>
+        <encoding channel="size" field="Show ID" aggregation="count"/>
+      </view>
+    </worksheet>
+    <worksheet name="Ratings vs. Release Year">
+      <view type="stacked_bar">
+        <encoding channel="x" field="Release Year"/>
+        <encoding channel="y" field="Show ID" aggregation="count"/>
+        <encoding channel="color" field="Ratings"/>
+      </view>
+    </worksheet>
+    <worksheet name="Top Directors by Show Count">
+      <view type="tree_map">
+        <encoding channel="size" field="Show ID" aggregation="count"/>
+        <encoding channel="label" field="Director"/>
+      </view>
+    </worksheet>
+    <worksheet name="Cast Analysis">
+      <view type="bubble">
+        <encoding channel="size" field="Show ID" aggregation="count"/>
+        <encoding channel="label" field="Cast"/>
+      </view>
+    </worksheet>
+  </worksheets>
+</workbook>
